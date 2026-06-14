@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lotus - Calm Habit Tracker, Daily Tracker, Pomodoro & To-Do</title>
+  <meta
+    name="description"
+    content="Lotus is a calm productivity app with habit tracking, daily status tracking, pomodoro sessions, to-do lists, reminders, app lock, and encrypted backups."
+  />
+  <meta
+    name="keywords"
+    content="Lotus app, habit tracker, daily tracker, pomodoro timer, to-do list, encrypted backup, app lock, productivity app, offline habit app"
+  />
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <meta name="author" content="Abhi"/>
+  <meta name="theme-color" content="#8DB580"/>
+  <link rel="canonical" href="https://abhih81m.github.io/lotus/"/>
+
+  <meta property="og:title" content="Lotus - Calm Habit Tracker, Daily Tracker, Pomodoro & To-Do"/>
+  <meta
+    property="og:description"
+    content="Track habits, log your day, run pomodoro sessions, manage tasks, and keep backups in one local-first productivity app."
+  />
+  <meta property="og:url" content="https://abhih81m.github.io/lotus/"/>
+  <meta property="og:type" content="website"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Lotus - Calm Habit Tracker, Daily Tracker, Pomodoro & To-Do"/>
+  <meta
+    name="twitter:description"
+    content="A calm, local-first productivity app with habits, daily tracking, pomodoro, to-dos, app lock, and encrypted backups."
+  />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Lotus",
+    "operatingSystem": "Android",
+    "applicationCategory": "ProductivityApplication",
+    "description": "Lotus is a calm productivity app with habit tracking, daily status tracking, pomodoro sessions, to-do lists, optional biometric app lock, and encrypted backup and restore.",
+    "url": "https://abhih81m.github.io/lotus/",
+    "publisher": {
+      "@type": "Person",
+      "name": "Abhi",
+      "url": "https://abhih81m.github.io/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Habit tracker",
+      "Habit calendar with full and partial completion",
+      "Daily tracker and daily analytics",
+      "Pomodoro timer",
+      "Date-wise to-do lists",
+      "Optional biometric app lock",
+      "Encrypted backup and restore",
+      "Rewarded ads for analytics access in the free version",
+      "Google Play in-app purchase for remove ads"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * , *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --sage-1: #f7f4ec;
+      --sage-2: #eef2e3;
+      --sage-3: #dce8d0;
+      --sage-4: #8db580;
+      --sage-5: #6d8c63;
+      --leaf: #4f6a4a;
+      --ink: #1f2a1d;
+      --muted: #5d6b5c;
+      --line: rgba(79, 106, 74, 0.14);
+      --card: rgba(255, 255, 249, 0.82);
+      --shadow: 0 18px 45px rgba(67, 84, 58, 0.12);
+      --accent: #d48152;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(168, 204, 154, 0.38), transparent 34%),
+        radial-gradient(circle at 82% 18%, rgba(212, 129, 82, 0.16), transparent 20%),
+        linear-gradient(180deg, #fcfaf5 0%, #f5f2e7 54%, #f1ecde 100%);
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(252, 250, 245, 0.82);
+      border-bottom: 1px solid rgba(79, 106, 74, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, var(--sage-4), var(--leaf));
+      color: #fff;
+      font-size: 20px;
+      box-shadow: 0 12px 28px rgba(79, 106, 74, 0.2);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy span {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--leaf); }
+
+    .nav-links .cta {
+      padding: 11px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--leaf), var(--sage-4));
+      box-shadow: 0 12px 24px rgba(79, 106, 74, 0.18);
+    }
+
+    .hero {
+      padding: 52px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(141, 181, 128, 0.14);
+      border: 1px solid rgba(109, 140, 99, 0.12);
+      color: var(--leaf);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 18px 0 18px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.9rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      max-width: 9.5ch;
+    }
+
+    .hero h1 span {
+      color: var(--leaf);
+      display: block;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.94rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(79, 106, 74, 0.15);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--leaf), var(--sage-4));
+      color: #fff;
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--ink);
+    }
+
+    .hero-notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .hero-note {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.83rem;
+      font-weight: 700;
+    }
+
+    .hero-panel {
+      position: relative;
+      padding: 24px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255, 255, 249, 0.88), rgba(244, 241, 232, 0.94));
+      border: 1px solid rgba(79, 106, 74, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(168, 204, 154, 0.44), transparent 70%);
+      pointer-events: none;
+    }
+
+    .mini-phone {
+      position: relative;
+      width: min(100%, 330px);
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 28px;
+      background: #fdfdf9;
+      border: 8px solid #243223;
+      box-shadow: 0 26px 38px rgba(31, 42, 29, 0.2);
+    }
+
+    .mini-bar {
+      width: 76px;
+      height: 8px;
+      margin: 0 auto 16px;
+      border-radius: 999px;
+      background: rgba(36, 50, 35, 0.18);
+    }
+
+    .screen-top {
+      padding: 14px;
+      border-radius: 18px;
+      background: linear-gradient(160deg, var(--sage-4), var(--sage-5));
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .screen-top strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .screen-top span {
+      font-size: 0.8rem;
+      opacity: 0.82;
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .screen-card,
+    .screen-wide {
+      padding: 12px;
+      border-radius: 18px;
+      background: var(--sage-2);
+      border: 1px solid rgba(109, 140, 99, 0.12);
+    }
+
+    .screen-card strong,
+    .screen-wide strong {
+      display: block;
+      font-size: 0.86rem;
+      margin-bottom: 6px;
+    }
+
+    .screen-card span,
+    .screen-wide span {
+      display: block;
+      font-size: 0.73rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .screen-wide {
+      grid-column: 1 / -1;
+      background: #fffaf1;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      max-width: 540px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .feature-grid,
+    .detail-grid,
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .card .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--leaf);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    .philosophy {
+      padding: 32px;
+      border-radius: 30px;
+      background:
+        linear-gradient(140deg, rgba(79, 106, 74, 0.96), rgba(109, 140, 99, 0.92)),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+      color: #f7f7f2;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .philosophy::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -50px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .philosophy h2 {
+      margin: 0 0 12px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .philosophy p {
+      margin: 0;
+      max-width: 620px;
+      line-height: 1.8;
+      color: rgba(247, 247, 242, 0.84);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .soft-pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 0.83rem;
+      font-weight: 700;
+    }
+
+    .support-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+      padding: 26px 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255, 250, 241, 0.92), rgba(255, 255, 249, 0.92));
+      border: 1px solid rgba(212, 129, 82, 0.18);
+      box-shadow: var(--shadow);
+    }
+
+    .support-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .support-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .support-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(79, 106, 74, 0.08);
+      padding-top: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .feature-grid,
+      .detail-grid,
+      .faq-grid,
+      .support-card {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading,
+      .footer-inner {
+        display: block;
+      }
+
+      .section-heading p,
+      .footer-inner p {
+        margin-top: 10px;
+      }
+
+      .support-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero {
+        padding-top: 32px;
+      }
+
+      .hero-panel,
+      .card,
+      .philosophy,
+      .support-card {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .hero h1 {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="https://abhih81m.github.io/">
+        <span class="brand-mark">✿</span>
+        <span class="brand-copy">
+          <strong>Lotus</strong>
+          <span>Calm productivity, local-first</span>
+        </span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Data & Ads</a>
+        <a href="#support">Support</a>
+        <a class="cta" href="mailto:abhilashpotluri445@gmail.com?subject=Lotus%20App%20Support">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">No account • On-device data • Built for steady progress</div>
+          <h1>Build better days <span>without turning life into a streak.</span></h1>
+          <p>
+            Lotus combines habits, daily reflection, pomodoro focus sessions, and date-wise
+            to-do planning in one calm app. The core experience is local-first, quick to start,
+            and designed to help you improve steadily instead of chasing pressure.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#features">See features</a>
+            <a class="button button-secondary" href="mailto:abhilashpotluri445@gmail.com?subject=Lotus%20Feedback">Send feedback</a>
+          </div>
+          <div class="hero-notes">
+            <span class="hero-note">Habit tracker + flexible calendar</span>
+            <span class="hero-note">Daily tracker + analytics</span>
+            <span class="hero-note">Pomodoro + task planning</span>
+          </div>
+        </div>
+
+        <div class="hero-panel" aria-hidden="true">
+          <div class="mini-phone">
+            <div class="mini-bar"></div>
+            <div class="screen-top">
+              <strong>Lotus</strong>
+              <span>Today, calmly organized</span>
+            </div>
+            <div class="screen-grid">
+              <div class="screen-card">
+                <strong>Habits</strong>
+                <span>Quick yes/no updates and partial effort when life is busy.</span>
+              </div>
+              <div class="screen-card">
+                <strong>Daily Status</strong>
+                <span>Productive, tired, sick day, self-care, and more.</span>
+              </div>
+              <div class="screen-card">
+                <strong>Pomodoro</strong>
+                <span>Focused sessions, planned breaks, and a calmer work rhythm.</span>
+              </div>
+              <div class="screen-card">
+                <strong>To-Do</strong>
+                <span>Date-wise tasks without clutter or account setup.</span>
+              </div>
+              <div class="screen-wide">
+                <strong>Backups & protection</strong>
+                <span>Encrypted `.hab` backups, restore support, and optional biometric app lock.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="philosophy">
+        <h2>Consistency over intensity.</h2>
+        <p>
+          Lotus is built for calm, sustainable progress. Partial effort still counts, analytics
+          are meant to help you understand patterns, and the app avoids turning every missed day
+          into failure. The goal is simple: stay organized, reflect honestly, and keep moving.
+        </p>
+        <div class="pill-row">
+          <span class="soft-pill">No sign-up required</span>
+          <span class="soft-pill">Core tracking works offline</span>
+          <span class="soft-pill">Made for real routines, not perfect streaks</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <h2>Everything important,<br/>in one calm place.</h2>
+        <p>
+          The app keeps daily planning and reflection close together so habits, mood-like day
+          markers, focused work, and tasks support each other instead of living in separate tools.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card">
+          <span class="kicker">✦ Flexible habits</span>
+          <h3>Habit tracker + habit calendar</h3>
+          <p>
+            Track habits with quick completion taps, or open the calendar to mark days as completed
+            or partially completed. Lotus also lets you work on unscheduled days when it feels right.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">✦ Daily reflection</span>
+          <h3>Daily tracker with patterns</h3>
+          <p>
+            Mark your day as productive, busy, tired, sick, self-care, and more. Daily analytics
+            help you notice trends without turning the app into pressure.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">✦ Focus sessions</span>
+          <h3>Pomodoro timer that stays practical</h3>
+          <p>
+            Run focused sessions, take planned breaks, and keep the timer visible while building a
+            calmer rhythm for work and study.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">✦ Clear tasks</span>
+          <h3>Date-wise to-do planning</h3>
+          <p>
+            Keep tasks tied to the dates that matter so you can plan the day ahead without juggling
+            a separate list app.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">✦ Safe backups</span>
+          <h3>Encrypted backup and restore</h3>
+          <p>
+            Export encrypted `.hab` backup files with your own PIN, save or share them, and restore
+            later when changing devices or recovering from a reinstall.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">✦ Private access</span>
+          <h3>Optional biometric app lock</h3>
+          <p>
+            If you want extra protection, Lotus can use your device security for an app lock while
+            keeping the core data stored locally on your device.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="section-heading">
+        <h2>Data, ads, and the practical bits.</h2>
+        <p>
+          This page is meant to be clear, not dramatic. Lotus stores its core tracker, task, timer,
+          and settings data on-device. Some network access is used for ads, purchases, and opening
+          hosted policy content.
+        </p>
+      </div>
+
+      <div class="detail-grid">
+        <article class="card">
+          <span class="kicker">Data</span>
+          <h3>Local-first by default</h3>
+          <p>
+            Habits, daily statuses, timer settings, tasks, and most app settings stay on the device.
+            You can start using Lotus immediately without creating an account.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">Ads</span>
+          <h3>Rewarded ads for analytics access</h3>
+          <p>
+            In the free version, Google AdMob rewarded ads may be used before opening analytics
+            screens. AdMob can collect limited device, network, and ad interaction data.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">Purchases</span>
+          <h3>Google Play handles billing</h3>
+          <p>
+            Remove-ads purchases are processed by Google Play. Lotus does not handle or store your
+            payment card information directly.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Quick answers.</h2>
+        <p>
+          These are the points most people look for before installing: what the app does, how it
+          stores data, and whether it adds friction.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <article class="card">
+          <span class="kicker">FAQ</span>
+          <h3>Do I need an account?</h3>
+          <p>No. Lotus is designed so you can add habits, log your day, manage tasks, and use the timer right away.</p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">FAQ</span>
+          <h3>Does the app work offline?</h3>
+          <p>Core tracking, daily logging, pomodoro usage, and to-do management work offline. Internet is mainly needed for ads, purchases, and hosted web pages.</p>
+        </article>
+
+        <article class="card">
+          <span class="kicker">FAQ</span>
+          <h3>Can I move my data later?</h3>
+          <p>Yes. Lotus includes encrypted backup and restore so you can keep a copy of your data or move it to another device later.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="support">
+      <div class="support-card">
+        <div>
+          <h2>Support and feedback</h2>
+          <p>
+            If you run into a bug, need help with a backup restore, or want to suggest an improvement,
+            send a message and include the device model and a short description of what happened.
+          </p>
+        </div>
+        <div class="support-actions">
+          <a class="button button-primary" href="mailto:abhilashpotluri445@gmail.com?subject=Lotus%20Support">Email support</a>
+          <a class="button button-secondary" href="https://abhih81m.github.io/">Back to portfolio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <p>Lotus is built with Flutter and designed for balanced, long-term productivity.</p>
+      <p><a href="mailto:abhilashpotluri445@gmail.com">abhilashpotluri445@gmail.com</a></p>
+    </div>
+  </footer>
+</body>
+</html>
