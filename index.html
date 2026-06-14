@@ -44,17 +44,23 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
 
     .app{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;
-      text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;
+      color:inherit;display:flex;flex-direction:column;gap:10px;
       transition:transform .18s,border-color .18s}
     .app:hover{transform:translateY(-4px);border-color:var(--accent)}
     .app .icon{font-size:2rem}
     .app h3{font-size:1rem;font-weight:700}
     .app p{font-size:.83rem;color:var(--muted);line-height:1.65;flex:1}
+    .app h3 a{color:var(--text);text-decoration:none}
+    .app h3 a:hover{text-decoration:underline}
     .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
     .badge{font-size:.72rem;padding:3px 10px;border-radius:20px;border:1px solid;font-weight:600}
     .live{color:#4ade80;border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
     .soon{color:var(--muted);border-color:var(--border);background:var(--surface)}
     .testing{color:#facc15;border-color:rgba(250,204,21,.35);background:rgba(250,204,21,.07)}
+    .app-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .app-link{display:inline-block;padding:9px 14px;border-radius:10px;text-decoration:none;font-size:.82rem;font-weight:700}
+    .app-page{background:linear-gradient(90deg,var(--accent),#5b8cf7);color:#fff}
+    .play-link{border:1px solid var(--border);color:var(--text);background:var(--surface)}
 
     /* ABOUT */
     .about{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 28px;
@@ -94,23 +100,31 @@
   <p class="label">Apps</p>
   <div class="grid">
 
-    <a class="app" href="https://play.google.com/store/apps/details?id=com.abhi.examzy" target="_blank">
+    <div class="app">
       <span class="icon">📝</span>
-      <h3>Exam Maker: Offline Tests</h3>
+      <h3><a href="https://abhih81m.github.io/exammaker/">Exam Maker: Offline Tests</a></h3>
       <p>Create and share classroom exams instantly via QR code. Students join in seconds — no login required.</p>
       <div class="badge-row">
         <span class="badge live">▶ Live on Play Store</span>
       </div>
-    </a>
+      <div class="app-links">
+        <a class="app-link app-page" href="https://abhih81m.github.io/exammaker/">Open app page</a>
+        <a class="app-link play-link" href="https://play.google.com/store/apps/details?id=com.abhi.examzy" target="_blank" rel="noopener noreferrer">Play Store</a>
+      </div>
+    </div>
 
-    <a class="app" href="https://abhih81m.github.io/lotus/">
+    <div class="app">
       <span class="icon">🌿</span>
-      <h3>Lotus</h3>
+      <h3><a href="https://abhih81m.github.io/lotus/">Lotus</a></h3>
       <p>Calm productivity app with habits, daily tracking, pomodoro focus sessions, to-do planning, encrypted backups, and optional app lock.</p>
       <div class="badge-row">
         <span class="badge live">↗ Product Page</span>
       </div>
-    </a>
+      <div class="app-links">
+        <a class="app-link app-page" href="https://abhih81m.github.io/lotus/">Open app page</a>
+        <a class="app-link play-link" href="https://play.google.com/store/apps/details?id=com.abhi.lotus" target="_blank" rel="noopener noreferrer">Play Store</a>
+      </div>
+    </div>
 
 
   </div>
